@@ -1,8 +1,15 @@
 const express = require('express')
+const cors = require('cors')
 
+const config = require('./config')
+const authRouter = require('./routes/authRouter')
+const assetsRouter = require('./routes/assetsRouter')
+//init server
 const app = express()
-const port = 3000
+//middlewares
+app.use('/api/auth', authRouter)
+app.use('/api/assets', assetsRouter)
 
-app.listen(port, () =>{
-    console.log('app listen on port ' + port)
+app.listen(config.port, () =>{
+    console.log('app listen on port ' + config.port)
 })
