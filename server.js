@@ -8,6 +8,7 @@ const assetsRouter = require('./routes/assetsRouter')
 //init server
 const app = express()
 //middlewares
+app.use(cors(), express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/assets', assetsRouter)
 async function connectDB(){
