@@ -13,7 +13,11 @@ exports.login = async (req, res) => {
     if(!result){
         return res.status(400).send('Bad Request')
     }
-    res.status(200).json({candidate})
+    const token = jwt.sign({
+        id: candidate._id,
+        email: candidate.email
+      }, 'secret', { expiresIn: 60 * 60 });
+    res.status(200).json({token})
 }
 // REGISTER CONTROLLER
 exports.register = async (req, res) => {
