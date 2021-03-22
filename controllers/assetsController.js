@@ -29,3 +29,14 @@ exports.deleteAsset = async (req, res) => {
         res.status(500).json({message: e.message})
     }
 }
+exports.updateAsset = async (req, res) => {
+    try{
+        const result = await Assets.findByIdAndUpdate(req.body.id, {...req.body.updates})
+        if(!result){
+            res.status(404).json({"message":"item did't find"})
+        }
+        res.status(200).json({"updated":result}) 
+    }catch(e){
+        res.status(500).json({message: e.message})
+    }
+}

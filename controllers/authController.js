@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
             return res.status(400).json({'message': "user with this email already exists"})
         }
         const salt = await bcrypt.genSaltSync(10);
-        var hash = await bcrypt.hashSync(user.password, salt);
+        let hash = await bcrypt.hashSync(user.password, salt);
         const newUser =  new Users({...req.body, password: hash})
         await newUser.save()
         res.status(200).json({"user crated": newUser})
