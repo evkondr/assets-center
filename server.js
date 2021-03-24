@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 const config = require('./config')
 const authRouter = require('./routes/authRouter')
 const assetsRouter = require('./routes/assetsRouter')
+const usersRouter = require('./routes/usersRouter')
 //init server
 const app = express()
 //middlewares
 app.use(cors(), express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/assets', assetsRouter)
+app.use('/api/users', usersRouter)
 async function connectDB(){
     try{
         await mongoose.connect(config.dbURI, {

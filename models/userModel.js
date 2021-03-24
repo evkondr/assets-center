@@ -4,11 +4,27 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const usersSchema = new Schema({
-    email: String,
-    password: String,
-    name: String,
-    surname: String,
-    position: String
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        default: ''
+    },
+    surname: {
+        type: String,
+        default: ''
+    },
+    position: {
+        type: String,
+        default: ''
+    }
 })
 
 const Users = mongoose.model('Users', usersSchema)
