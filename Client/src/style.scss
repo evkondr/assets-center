@@ -1,0 +1,25 @@
+@import './bootstrap';
+$theme-color-1: #E1000F;
+$theme-color-2: #fff;
+html, body, #root,.main, .container, .row{
+    width: 100%;
+    height: 100%;
+}
+.navbar{
+    a{
+        color: $theme-color-2 !important;
+    }
+    
+    width: 100%;
+    background-color: $theme-color-1 !important;
+} 
+.form-container{
+    h4{
+        text-align: center;
+    }
+    form{
+        border: 1px solid #707070;
+        border-radius: 5px;
+        padding: 1em;
+    }
+}

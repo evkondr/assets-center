@@ -1,10 +1,14 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
 
 const Users = require('../models/userModel')
 // LOGIN CONTROLLER
 exports.login = async (req, res) => {
     try{
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         let {email, password} = req.body
         const candidate = await Users.findOne({email}).exec();
         if(!candidate){
@@ -26,6 +30,10 @@ exports.login = async (req, res) => {
 // REGISTER CONTROLLER
 exports.register = async (req, res) => {
     try{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         const user = {...req.body}
         const candidate = await Users.findOne({email: user.email}).exec();
         if(candidate){
