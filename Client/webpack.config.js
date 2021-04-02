@@ -69,6 +69,9 @@ module.exports = {
         port: 9000,
         watchContentBase: true,
         progress: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+          '/api': 'http://localhost:3000',
+        }
       },
   };

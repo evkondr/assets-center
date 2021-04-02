@@ -1,10 +1,11 @@
 const router = require('express').Router()
 
+const authMiddleware = require('../middleware/authMiddleware')
 const assetsController = require('../controllers/assetsController')
 
-router.get('/', assetsController.getAssets)
-router.post('/', assetsController.addAsset)
-router.delete('/', assetsController.deleteAsset)
-router.patch('/', assetsController.updateAsset)
+router.get('/', authMiddleware, assetsController.getAssets)
+router.post('/', authMiddleware, assetsController.addAsset)
+router.delete('/', authMiddleware, assetsController.deleteAsset)
+router.patch('/', authMiddleware, assetsController.updateAsset)
 
 module.exports = router

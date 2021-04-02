@@ -1,29 +1,63 @@
-import React from 'react'
+import React, {useState, useContext} from 'react'
 
-const AuthComponent = () =>{
-    
+import useHttp from '../hooks/useHttp'
+import AuthContext from '../context/AuthContext'
+
+const AuthComponent = (props) =>{
+    const { isLoading, request, error } = useHttp()
+    const [alert, setAlert] = useState(null)
+    const [form, setForm] = useState({email: '', password: ''})
+    const context = useContext(AuthContext)
+    const onChangeHandler = (e) => {
+        setForm({...form, [e.target.id]:e.target.value})
+    }
+
+    const onLoginHandler = async (e) =>  {
+        e.preventDefault()
+        try{
+            const data = await request('/api/auth/login', 'POST', {'Content-Type': 'application/json'}, {...form})
+            context.login(data.userId, data.token)
+        }catch(e){
+            setAlert({msg: e.message, class: "alert alert-warning"})
+        }
+    }
+    const onRegHandler = async (e) =>  {
+        e.preventDefault()
+        try{
+            const data = await request('/api/auth/register', 'POST', {'Content-Type': 'application/json'}, {...form})
+            setAlert({msg: "User successfully registered", class: "alert alert-success"})
+        }catch(e){
+            setAlert({msg: e.message, class: "alert alert-warning"})
+        }
+    }
     return(
         <div className="container">
             <div className="row align-items-center justify-content-center">
                 <div className="form-container">
-                    <h4>Login</h4>
+                    <h4>Authorization</h4>
                     <form>
                         <div className="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                            <label htmlFor="email">Email address</label>
+                            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email" onChange={onChangeHandler} value={form.email}/>
                             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div className="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" id="password" placeholder="Password" onChange={onChangeHandler} value={form.password}/>
                         </div>
-                        <div className="form-check">
+                        {/* <div className="form-check">
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                        </div> */}
+                        <button type="submit" className="btn btn-primary" onClick={onLoginHandler} disabled={isLoading}>Login</button>
+                        <button type="submit" className="btn btn-secondary" onClick={onRegHandler} disabled={isLoading}>Register</button>
                     </form>
+                    {alert&&<div className={alert.class} role="alert">
+                        {alert.msg}
+                    </div>}
                 </div>
+                
+                
             </div>
         </div>
         

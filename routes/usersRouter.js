@@ -1,11 +1,12 @@
 const router = require('express').Router()
 
 const usersController = require('../controllers/usersController')
+const authMiddleware = require('../middleware/authMiddleware')
 
-router.get('/', usersController.getUsers)
-router.get('/:id', usersController.getUser)
-router.delete('/', usersController.deleteUser)
-router.patch('/', usersController.updateUser)
+router.get('/', authMiddleware, usersController.getUsers)
+router.get('/:id', authMiddleware, usersController.getUser)
+router.delete('/', authMiddleware, usersController.deleteUser)
+router.patch('/', authMiddleware, usersController.updateUser)
 
 
 module.exports = router

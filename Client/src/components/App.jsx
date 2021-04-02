@@ -1,42 +1,25 @@
 import React from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-    Switch,
-    Route
-  } from "react-router-dom";
 
 import AuthComponent from './AuthComponent'
 import NavComponent from './NavComponent'
-import AssetsComponent from './AssetsComponent';
-import ProfileComponent from './ProfileComponent';
+import Main from './Main'
+import useAuth from '../hooks/useAuth'
+import AuthContext from '../context/AuthContext'
 
-const isAuthorized = true
+let isAuthorized = false
 const App = () =>{
-    if(!isAuthorized){
-        return (
-            <Router>
-                <div className="main">
-                <NavComponent />
-                <AuthComponent />
-            </div>
-            </Router>
-        )
-    }
+    const {login, logout, token, userId} = useAuth()
+    isAuthorized = !!token
     return(
-        <Router>
-            <div className='main'>
-                <NavComponent />
-                <Switch>
-                    <Route exact path="/">
-                        <AssetsComponent />
-                    </Route>
-                    <Route path="/profile">
-                        <ProfileComponent />
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
-        
+        <AuthContext.Provider value = {{login, logout, token, userId, isAuthorized}} >
+            <Router>
+            {isAuthorized? <Main />:<div className="main">
+                    <NavComponent />
+                    <AuthComponent />
+                </div>} 
+            </Router>
+        </AuthContext.Provider>
     )
 }
 export default App
