@@ -1,5 +1,7 @@
+//asset db schema 
 const mongoose = require('mongoose');
 
+const currentDate = require('../utils/currentDate')
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
@@ -16,7 +18,7 @@ const assetsSchema = new Schema({
     //Creation day
     cDay: {
         type: String,
-        required: true
+        default: currentDate
     },
     byWho:{
         type: String,
@@ -25,11 +27,20 @@ const assetsSchema = new Schema({
     //Modification day
     mDay:{
         type: String,
+        default: currentDate
+    },
+    department:{
+        type: String,
+    },
+    price: {
+        type: Number,
         required: true
     },
-    location:{
+    owner: {
+        type: String 
+    },
+    comments: {
         type: String,
-        required: true
     }
 })
 

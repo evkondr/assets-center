@@ -2,8 +2,8 @@ import React from 'react'
 
 import AuthComponent from './AuthComponent'
 import NavComponent from './NavComponent'
-import AssetsComponent from './AssetsComponent'
-import ProfileComponent from './ProfileComponent'
+import AssetsContainer from './AssetsPage/AssetsContainer'
+import ProfileComponent from './ProfilePage/ProfileComponent'
 
 import { Switch, Route, Redirect } from "react-router-dom";
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
                     <Redirect to="/assets" />
                 </Route>
                 <Route path="/assets">
-                    <AssetsComponent />
+                    <AssetsContainer />
                 </Route>
                 <Route path="/profile">
                     <ProfileComponent />

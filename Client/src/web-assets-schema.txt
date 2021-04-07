@@ -1,0 +1,11 @@
+assets = {
+    name
+    serialNumber
+    cDay
+    byWho
+    mDay
+    department
+    price
+    owner
+    comments
+}

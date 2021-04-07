@@ -1,10 +1,15 @@
 import React, {useContext} from 'react'
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory} from "react-router-dom";
 
 import AuthContext from '../context/AuthContext'
 
 const NavComponent = () => {
     const {isAuthorized, logout} = useContext(AuthContext)
+    const history = useHistory()
+    const logotHandler = () => {
+        logout()
+        history.push('/')
+    }
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -22,7 +27,7 @@ const NavComponent = () => {
                         </li>
                     </ul>
                 <form className="form-inline my-2 my-lg-0">
-                    <button className="btn" type="submit" onClick={logout}>Logout</button>
+                    <button className="btn" type="submit" onClick={logotHandler}>Logout</button>
                 </form>
             </div>}
             </div>

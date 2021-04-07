@@ -1,8 +1,10 @@
 import {useState, useCallback, useEffect} from 'react'
+import { useHistory } from "react-router-dom";
 const storageKey = 'user'
 const useAuth = () => {
     const [token, setToken] = useState(null)
     const [userId, setUserId] = useState(null)
+    const history = useHistory()
     const login = useCallback((id, jwtToken) => {
         setToken(jwtToken)
         setUserId(id)

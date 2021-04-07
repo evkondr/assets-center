@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
         const token = jwt.sign({
             id: candidate._id,
             email: candidate.email
-          }, config.jwtsk, { expiresIn: 60 });
+          }, config.jwtsk, { expiresIn: 60 * 60});
         res.status(200).json({token, userId: candidate._id})
     }catch(e){
         res.status(500).json({"message":e.message})

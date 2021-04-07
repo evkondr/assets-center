@@ -1,9 +1,12 @@
 @import './bootstrap';
+
 $theme-color-1: #E1000F;
 $theme-color-2: #fff;
 html, body, #root,.main, .container, .row{
     width: 100%;
     height: 100%;
+    position: relative;
+    font-size: 14px
 }
 .navbar{
     a{
@@ -25,4 +28,43 @@ html, body, #root,.main, .container, .row{
     .btn{
         margin-right: 0.5em;
     }
+}
+.d-flex{
+    p{
+        margin: 0 0 0 10px;
+        line-height: 1.5em;
+    }
+}
+.assets-list{
+    td, th{
+        vertical-align: baseline;
+    }
+    .showmore{
+        svg{
+            cursor: pointer;
+        }
+    }
+    .add-btn{
+        svg{
+            margin-right: 0.3em;
+            margin-top: -3px;
+        }
+    }
+}
+
+.details-block{
+    padding: 1em;
+    border: 1px solid;
+    position:  absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    font-size: 0.8em;
+    thead{
+        th{
+            border-top: none;
+        }
+    }
+    
 }

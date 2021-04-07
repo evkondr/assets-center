@@ -1,26 +1,32 @@
 import React, {useState, useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 
 import useHttp from '../hooks/useHttp'
 import AuthContext from '../context/AuthContext'
 
+//Component initialization
 const AuthComponent = (props) =>{
     const { isLoading, request, error } = useHttp()
     const [alert, setAlert] = useState(null)
     const [form, setForm] = useState({email: '', password: ''})
     const context = useContext(AuthContext)
+    const history = useHistory()
+    //Inputs change handler
     const onChangeHandler = (e) => {
         setForm({...form, [e.target.id]:e.target.value})
     }
-
+    //Login click handler
     const onLoginHandler = async (e) =>  {
         e.preventDefault()
         try{
             const data = await request('/api/auth/login', 'POST', {'Content-Type': 'application/json'}, {...form})
             context.login(data.userId, data.token)
+            history.push('/')
         }catch(e){
             setAlert({msg: e.message, class: "alert alert-warning"})
         }
     }
+    //Register click handlers
     const onRegHandler = async (e) =>  {
         e.preventDefault()
         try{
