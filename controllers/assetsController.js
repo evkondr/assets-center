@@ -1,4 +1,5 @@
 const Assets = require('../models/assetModule')
+const currentDate = require('../utils/currentDate')
 
 exports.getAssets = async (req, res) => {
     
@@ -31,7 +32,7 @@ exports.deleteAsset = async (req, res) => {
 }
 exports.updateAsset = async (req, res) => {
     try{
-        const result = await Assets.findByIdAndUpdate(req.body.id, {...req.body.updates})
+        const result = await Assets.findByIdAndUpdate(req.body.id, {...req.body.updates, mDay:currentDate})
         if(!result){
             res.status(404).json({"message":"item did't find"})
         }
