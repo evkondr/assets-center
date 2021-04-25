@@ -1,10 +1,11 @@
 import React, {useContext} from 'react'
 import { NavLink, useHistory} from "react-router-dom";
+import {DoorOpen} from 'react-bootstrap-icons'
 
 import AuthContext from '../context/AuthContext'
 
 const NavComponent = () => {
-    const {isAuthorized, logout} = useContext(AuthContext)
+    const {isAuthorized, logout, userId} = useContext(AuthContext)
     const history = useHistory()
     const logotHandler = () => {
         logout()
@@ -23,11 +24,11 @@ const NavComponent = () => {
                             <NavLink className="nav-link" to="/assets" >Assets</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/profile">Profile</NavLink>
+                            <NavLink className="nav-link" to={`/profile/${userId}`}>Profile</NavLink>
                         </li>
                     </ul>
                 <form className="form-inline my-2 my-lg-0">
-                    <button className="btn" type="submit" onClick={logotHandler}>Logout</button>
+                    <button className="btn btn-dark" type="submit" onClick={logotHandler}><DoorOpen />Logout</button>
                 </form>
             </div>}
             </div>

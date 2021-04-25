@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import {Trash, PencilSquare} from 'react-bootstrap-icons'
 
 import Modal from '../Modal/ModalContainer'
@@ -29,7 +30,7 @@ const Details = (props) => {
                 <tr>
                     <td>{cDay}</td>
                     <td>{mDay}</td>
-                    <td>{byWho}</td>
+                    <td><Link to={`/users/${byWho}`}>{byWho}</Link> </td>
                     <td>{owner}</td>
                     <td>{comments}</td>
                 </tr>

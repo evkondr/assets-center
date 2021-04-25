@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
 
 import AuthComponent from './AuthComponent'
@@ -14,10 +14,14 @@ const App = () =>{
     return(
         <AuthContext.Provider value = {{login, logout, token, userId, isAuthorized}} >
             <Router>
-            {isAuthorized? <Main />:<div className="main">
-                    <NavComponent />
+            {isAuthorized? <Main />:
+            <Fragment>
+                <NavComponent />
+                <div className="main">
                     <AuthComponent />
-                </div>} 
+                </div>
+            </Fragment>
+            } 
             </Router>
         </AuthContext.Provider>
     )

@@ -9,12 +9,17 @@ html, body, #root,.main, .container, .row{
     font-size: 14px
 }
 .navbar{
+    position: absolute;
+    z-index: 1000;
     a{
         color: $theme-color-2 !important;
     }
     
     width: 100%;
     background-color: $theme-color-1 !important;
+}
+.main{
+    padding-top: 50px;
 } 
 .form-container{
     h4{
@@ -42,8 +47,12 @@ button{
     }
 }
 .assets-list{
+    
     td, th{
         vertical-align: baseline;
+    }
+    .add-btn{
+        border: none;
     }
     .showmore{
         svg{
@@ -52,7 +61,6 @@ button{
     }
     
 }
-
 .details-block{
     padding: 1em;
     border: 1px solid;
@@ -71,4 +79,10 @@ button{
         }
     }
     
+}
+.profile-block{
+    margin-top: 1em;
+    form{
+        width: 50%;
+    }
 }

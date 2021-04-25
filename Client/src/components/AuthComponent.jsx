@@ -51,10 +51,6 @@ const AuthComponent = (props) =>{
                             <label htmlFor="password">Password</label>
                             <input type="password" className="form-control" id="password" placeholder="Password" onChange={onChangeHandler} value={form.password}/>
                         </div>
-                        {/* <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                        </div> */}
                         <button type="submit" className="btn btn-primary" onClick={onLoginHandler} disabled={isLoading}>Login</button>
                         <button type="submit" className="btn btn-secondary" onClick={onRegHandler} disabled={isLoading}>Register</button>
                     </form>

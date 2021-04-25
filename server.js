@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose');
@@ -13,6 +14,13 @@ app.use(cors(), express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/assets', assetsRouter)
 app.use('/api/users', usersRouter)
+if(process.env.NODE_ENV === 'production'){
+    app.use('/', express.static(path.resolve(__dirname, 'Client', 'dist')))
+    app.get('*', (req, res)=>{
+        res.sendFile(path.resolve(__dirname, 'Client', 'dist', 'index.html'))
+    })
+}
+
 async function connectDB(){
     try{
         await mongoose.connect(config.dbURI, {

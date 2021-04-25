@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin') //It creates a C
 const webpack = require('webpack')
 
 module.exports = {
-    mode:'development',
+    mode: process.env.NODE_ENV || 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),

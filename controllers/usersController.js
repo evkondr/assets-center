@@ -1,6 +1,7 @@
 
 const Users = require('../models/userModel')
 
+//Get all users
 exports.getUsers = async (req, res) => {
     try{
         const result = await Users.find({})
@@ -9,6 +10,7 @@ exports.getUsers = async (req, res) => {
         res.status(500).json({message: e.message})
     }
 }
+//Get one user
 exports.getUser = async (req, res) => {
     try{
         const user = await Users.findById(req.params.id)
@@ -20,6 +22,7 @@ exports.getUser = async (req, res) => {
         res.status(500).json({message: e.message})
     }
 }
+//Delete a user
 exports.deleteUser = async (req, res) => {
     try{
         const result = await Users.findByIdAndDelete(req.body.id)
@@ -31,10 +34,11 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({message: e.message})
     }
 }
+//Update a user
 exports.updateUser = async (req, res) => {
     try{
         const {name, surname, position} = req.body
-        const result = await Assets.findByIdAndUpdate(req.body.id, {name, surname, position})
+        const result = await Users.findByIdAndUpdate(req.body.id, {name, surname, position})
         if(!result){
             res.status(404).json({"message":"item did't find"})
         }

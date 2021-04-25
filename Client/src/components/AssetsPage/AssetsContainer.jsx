@@ -79,8 +79,8 @@ const AssetsContainer = () => {
                 <table className="table table-striped assets-list">
                     <thead>
                         <tr colSpan='6'>
-                            <td>
-                                <button type="button" className="btn add-btn btn-success" data-toggle="modal" data-target="#addModal"> <PlusCircleFill/>Add new asset</button>
+                            <td className='add-btn'>
+                                <button type="button" className="btn btn-success" data-toggle="modal" data-target="#addModal"> <PlusCircleFill/>Add new asset</button>
                             </td>
                         </tr>
                         <tr>

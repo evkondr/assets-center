@@ -7,6 +7,7 @@ const userHttp = () => {
         setLoading(true)
         try{
             if(body){
+                headers = {...headers, 'Content-Type': 'application/json'}
                 body = JSON.stringify(body)
             }
             const response = await fetch(url, {
